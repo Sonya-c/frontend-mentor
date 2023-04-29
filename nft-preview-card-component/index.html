@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | NFT preview card component</title>
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap"  rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            Softblue: 'hsl(215, 51%, 70%)',
+            Cyan: 'hsl(178, 100%, 50%)',
+            'VeryDarkBlue-main': 'hsl(217, 54%, 11%)',
+            'VeryDarkBlue-card': 'hsl(216, 50%, 16%)',
+            'VeryDarkBlue-line': 'hsl(215, 32%, 27%)',
+            White: 'hsl(0, 0%, 100%)'
+          }
+        }
+      }
+    }
+  </script>
+
+</head>
+
+<body class="bg-VeryDarkBlue-main h-screen flex justify-center items-center text-[18px] font-[Outfit] ">
+
+  <main class="bg-VeryDarkBlue-card drop-shadow-2l rounded-2xl w-[350px] p-[25px] " >
+    <div class="h-[300px] w-[300px] relative ">
+      <img id="equi" class="rounded-lg " src="./images/image-equilibrium.jpg" alt="NFT image">
+      <div class="h-[300px] w-[300px] w-full transition opacity-0 hover:opacity-100 bg-Cyan bg-opacity-50 cursor-pointer rounded-lg absolute top-0 flex items-center justify-center ">
+        <img id="view" src="./images/icon-view.svg" alt="" aria-hidden=“true”>
+      </div>
+    </div>
+
+    <h1 class="text-white hover:text-Cyan font-[600] text-xl mt-5 mb-3 cursor-pointer ">
+      Equilibrium #3429
+    </h1>
+
+    <p class="text-Softblue font-[300] ">
+      Our Equilibrium collection promotes balance and calm.
+    </p>
+
+    <div class="w-full grid grid-cols-2 mt-5 mb-5 ">
+      <div class="flex gap-2 items-center ">
+        <img
+          class="inline-block"
+          src="./images/icon-ethereum.svg" alt="" aria-hidden=“true”>
+        <p class="inline-block text-Cyan ">0.041 ETH</p>
+      </div>
+
+      <div class="w-full flex gap-2 items-center justify-end font-[300] ">
+        <img class="" src="./images/icon-clock.svg" alt="" aria-hidden=“true”>
+        <p class="text-Softblue ">3 days left</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-5 border-t-2 border-t-VeryDarkBlue-line pt-3 pb-1 font-[300] ">
+      <img class="w-[30px] border-2 border-white rounded-full " src="./images/image-avatar.png" alt="Headshot of Jules Wyvern" >
+      <p class="text-Softblue inline-block ">Creation of <a class="text-white hover:text-Cyan cursor-pointer " >Jules Wyvern</a></p>
+    </div>
+  
+  </main>
+
+
+</body>
+</html>

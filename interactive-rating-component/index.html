@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: '#fb7413',
+            light_grey: '#959eac',
+            medium_gray: '#7c8798',
+            dark_blue: '#252d37',
+            very_dark_blue: '#121417'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer base {
+      form label {
+        background-color: #262f38;
+        width: 50px;
+        height: 50px;
+        
+        @apply transition;
+        @apply rounded-full;
+        @apply flex;
+        @apply justify-center;
+        @apply items-center;
+      }
+
+      form label:hover {
+        @apply cursor-pointer; 
+        @apply bg-medium_gray;
+        @apply text-white;
+        @apply font-bold;
+      }
+      
+      form input[type=radio]:checked + label {
+        @apply bg-orange;
+        @apply text-white;
+      }
+
+      form input[type=radio] {
+        @apply hidden; 
+      }
+    }
+  </style>
+
+</head>
+
+<body class="h-screen w-screen flex items-center justify-center text-[15px] font-[Overpass] bg-very_dark_blue text-white ">
+
+  <main class="bg-gradient-to-t from-[#171e28] to-[#232a32] rounded-2xl drop-shadow  w-[414px] h-[414px] p-10 ">
+
+    <!-- Rating state start -->
+
+    <section class="" id="rating_card">
+      <img src="./images/icon-star.svg" alt="" class="bg-[#262f38] rounded-full p-4 ">
+
+      <h1 class="text-2xl font-bold mt-8 mb-3 ">
+        How did we do?
+      </h1>
+
+      <p class="text-light_grey mb-5">
+        Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!
+      </p>
+      
+      <form action="/thank_you.html" method="POST" id="rating_form">
+        <div class="leading-[0px] text-light_grey flex justify-around mb-5 ">
+          <input type="radio" name="rating" id="rating_1" value="1" required>
+          <label for="rating_1">1</label>
+    
+          <input type="radio" name="rating" id="rating_2" value="2">
+          <label for="rating_2">2</label>
+    
+          <input type="radio" name="rating" id="rating_3" value="3">
+          <label for="rating_3">3</label>
+          
+          <input type="radio" name="rating" id="rating_4" value="4">
+          <label for="rating_4">4</label>
+    
+          <input type="radio" name="rating" id="rating_5" value="5">
+          <label for="rating_5">5</label>
+        </div>
+        
+        <button class="leading-[0px] align-bottom transition block bg-orange w-full rounded-full p-5 drop-shadow uppercase tracking-wider hover:bg-white hover:text-orange font-bold mt-8 " type="submit">
+          Submit
+        </button>
+      </form>
+    </section>
+    <!-- Rating state end -->
+    
+    <!-- Thank you state start -->
+      
+    <section class="hidden text-center h-full flex flex-col justify-around items-center " id="thank_you">
+    
+      <img src="./images/illustration-thank-you.svg" alt="">
+
+      <div class="leading-[0px] text-orange bg-[#262f38] w-fit p-4 rounded-2xl align-middle">
+      You selected <span id="selected_rating"></span> out of 5
+      </div>
+  
+      <h1 class="font-bold text-2xl">
+        Thank you!
+      </h1>
+  
+      <p class="text-light_grey ">
+        We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get in touch!
+      </p>
+      
+    <!-- Thank you state end -->
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('rating_form');
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+
+      const rating_card = document.getElementById('rating_card');
+      const msm_card = document.getElementById('thank_you');
+      const rating_span = document.getElementById('selected_rating');
+      const rating = document.querySelector('input[name="rating"]:checked').value;
+
+      rating_card.classList.add('hidden');      
+      rating_span.innerText = "" + rating;
+      msm_card.classList.remove('hidden');
+
+    })
+  </script>
+</body>
+</html>

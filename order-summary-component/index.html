@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Order summary card</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            PaleBlue: 'hsl(225, 100%, 94%)',
+            BrightBlue: 'hsl(245, 75%, 52%)',
+            VeryPaleBlue: 'hsl(225, 100%, 98%)',
+            DesaturatedBlue: 'hsl(224, 23%, 55%)',
+            DarkBlue: 'hsl(223, 47%, 23%)'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="w-full h-screen flex items-center justify-center bg-PaleBlue text-[16px] " >
+    
+    <main class="bg-white drop-shadow-2xl rounded-2xl w-[calc(100%-50px)] sm:w-[450px] " >
+        <img class="rounded-t-2xl " src="./images/illustration-hero.svg" alt="" />
+
+        <div class="flex items-center flex-col p-5 sm:p-11 gap-6 justify-center " >
+            <div class="text-center ">
+                <h1 class="text-2xl text-DarkBlue font-[800]" >
+                    Order Summary
+                </h1>
+                <p class="text-DesaturatedBlue mt-4 sm:m-3 ">
+                    You can now listen to millions of songs, audiobooks, and podcasts on any device anywhere you like!
+                </p>
+            </div>
+            <div class="bg-VeryPaleBlue grid grid-cols-3 w-full rounded-xl p-5 " >
+                <div class="col-span-2 flex gap-8 ">
+                    <img src="./images/icon-music.svg"
+                        alt=""
+                        aria-hidden="true" />
+                    <div>
+                        <p class="text-DarkBlue font-bold ">Anual Plan</p>
+                        <p class="text-DesaturatedBlue ">$59.99/year</p>
+                    </div>
+                </div>
+                <div class="h-full flex items-center justify-end ">
+                    <a class="cursor-pointer underline hover:no-underline text-BrightBlue font-bold hover:brightness-200 transition " >Change</a>
+                </div>
+            </div>
+            <button class="bg-BrightBlue rounded-xl drop-shadow-2xl cursor-pointer w-full p-3 font-bold text-lg text-white hover:brightness-200 transition " >
+                Proceed to Payment
+            </button>
+            <button class="font-bold text-DesaturatedBlue pb-5 sm:pb-3 hover:text-DarkBlue transition " >
+                Cancel Order
+            </button>
+        </div>
+    </main>
+</body>
+</html>
