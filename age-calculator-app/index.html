@@ -7,13 +7,37 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
   <title>Frontend Mentor | Age calculator app</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            Purple: "hsl(259, 100%, 65%)",
+            LightRed: "hsl(0, 100%, 67%)",
+            White: "hsl(0, 0%, 100%)",
+            OffWhite: "hsl(0, 0%, 94%)",
+            LightGrey: "hsl(0, 0%, 86%)",
+            SmokeyGrey: "hsl(0, 1%, 44%)",
+            OffBlack: "hsl(0, 0%, 8%)",
+          }
+        }
+      }
+    }
+  </script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
-<body>
-  <main>
+<body class="font-[Poppins] bg-OffWhite flex items-center justify-center h-screen w-screen ">
+  <main class="bg-White w-[500px] p-5 rounded-xl ">
     <form id="form">
-      <div>
+      <div class="grid grid-cols-3 gap-10 [&_input]:w-full [&_input]:border [&_input]:border-LightGrey [&_input]:p-2 [&_input]:rounded-md ">
         <div>
           <label for="birthday">DAY</label>
           <input id="birthday" type="number" required>
@@ -29,11 +53,17 @@
           <input type="number" id="birthyear" required>
         </div>
       </div>
-      <button type="submit">
-        <img src="./assets/images/icon-arrow.svg" alt="">
-      </button>
+      <div class="relative h-[30px] ">
+        <button type="submit" title="submit" class="bg-Purple rounded-full p-3 absolute right-0 ">
+          <img width="30" src="assets/images/icon-arrow.svg" alt="" />
+        </button>
+        <hr class="absolute top-0 bottom-0 left-0 right-0 ">
+      </div>
+      
+      
     </form>
-    <div>
+    
+    <div class="[&>*]:text-[32px] font-[800] italic [&_span]:text-[Purple] ">
       <p><span id="year">--</span>years</p>
       <p><span id="month">--</span>months</p>
       <p><span id="days">--</span>days</p>
