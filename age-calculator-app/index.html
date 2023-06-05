@@ -30,54 +30,107 @@
       }
     }
   </script>
+  <style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
 
+    input[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+    }
+  </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body class="font-[Poppins] bg-OffWhite flex items-center justify-center h-screen w-screen ">
-  <main class="bg-White w-[500px] p-5 rounded-xl ">
+  <main class="bg-White w-[450px] h-[280px] p-5 rounded-xl ">
     <form id="form">
-      <div class="grid grid-cols-3 gap-10 [&_input]:w-full [&_input]:border [&_input]:border-LightGrey [&_input]:p-2 [&_input]:rounded-md ">
+      <div class="
+      grid grid-cols-3 gap-5  
+      w-[80%]
+
+      [&_input]:border
+      [&_input]:border-LightGrey
+      [&_input]:pl-4   
+      [&_input]:pr-4   
+      [&_input]:pt-3    
+      [&_input]:pb-3    
+      [&_input]:text-xl
+      [&_input]:rounded-md 
+      [&_input]:w-full 
+      [&_label]:text-xs 
+      [&_label]:text-SmokeyGrey 
+      [&_label]:tracking-widest
+
+      ">
         <div>
           <label for="birthday">DAY</label>
-          <input id="birthday" type="number" required>
+          <input id="birthday" min="1" max="31" type="number" placeholder="DD" required>
         </div>
         
         <div>
           <label for="birthmonth">MONTH</label>
-          <input type="number" id="birthmonth" required>
+          <input type="number" min="1" max="12" id="birthmonth" placeholder="MM" required>
         </div>
 
         <div>
           <label for="birthyear">YEAR</label>
-          <input type="number" id="birthyear" required>
+          <input type="number" min="0" id="birthyear" placeholder="YYYYY" required>
         </div>
       </div>
-      <div class="relative h-[30px] ">
-        <button type="submit" title="submit" class="bg-Purple rounded-full p-3 absolute right-0 ">
+      <div class="h-[30px] grid grid-cols-2 items-center ">
+        <div class="col-start-1 col-end-6">
+          <hr>
+        </div>
+        <button 
+            type="submit"
+            title="submit"
+            class="
+              bg-Purple 
+              rounded-full 
+              p-3 
+              col-end-7 col-span-1
+              hover:bg-OffBlack
+              ">
           <img width="30" src="assets/images/icon-arrow.svg" alt="" />
         </button>
-        <hr class="absolute top-0 bottom-0 left-0 right-0 ">
       </div>
-      
-      
     </form>
     
-    <div class="[&>*]:text-[32px] font-[800] italic [&_span]:text-[Purple] ">
-      <p><span id="year">--</span>years</p>
-      <p><span id="month">--</span>months</p>
-      <p><span id="days">--</span>days</p>
+    <div class="
+      [&>*]:text-4xl  
+      font-[800] italic
+      [&_span]:text-Purple 
+      [&_span]:tracking-widest
+      text-OffBlack 
+
+      ">
+      <p><span id="years">--</span> years</p>
+      <p><span id="months">--</span> months</p>
+      <p><span id="days">--</span> days</p>
     </div>
   </main>
 
   <script>
     $("#form").submit(event => {
       event.preventDefault();
-      birthDay = $("#birthday").val()
-      bithhMonth = $("#birthmonth").val()
-      birthYear = $("#birthyear").val()
+      let today = new Date();
+      
+      let birthdate = new Date();
+      birthdate.setFullYear(
+        $("#birthyear").val(),
+        $("#birthmonth").val() - 1,
+        $("#birthday").val());
 
-      $("#year").text(birthYear)
+      let diff = new Date(today - birthdate);
+
+      $("#years").text(diff.getUTCFullYear() - 1970);
+      $("#months").text(diff.getUTCMonth());
+      $("#days").text(diff.getUTCDate() - 1);
+
     })
   </script>
 </body>
