@@ -46,25 +46,30 @@
 </head>
 
 <body class="font-[Poppins] bg-OffWhite flex items-center justify-center h-screen w-screen ">
-  <main class="bg-White w-[450px] h-[280px] p-5 rounded-xl ">
-    <form id="form">
+  <main class="bg-White w-full m-5 md:w-[500px] p-8 rounded-2xl rounded-br-[115px] ">
+    <form id="form" novalidate >
       <div class="
       grid grid-cols-3 gap-5  
-      w-[80%]
-
+      w-[80%]  
       [&_input]:border
       [&_input]:border-LightGrey
-      [&_input]:pl-4   
-      [&_input]:pr-4   
-      [&_input]:pt-3    
-      [&_input]:pb-3    
-      [&_input]:text-xl
+      [&_input]:pl-3   
+      [&_input]:pr-3   
+      [&_input]:pt-2    
+      [&_input]:pb-2 
       [&_input]:rounded-md 
       [&_input]:w-full 
-      [&_label]:text-xs 
-      [&_label]:text-SmokeyGrey 
-      [&_label]:tracking-widest
+      [&_input:focus]:border-Purple
+      [&_input:focus]:outline-none
+      [&_input:hover]:border-Purple
+      [&_input:hover]:outline-none
+      [&_input]:cursor-pointer
+      [&_input]:font-bold
 
+      [&_label]:text-[10px] 
+      [&_label]:text-SmokeyGrey 
+      [&_label]:tracking-wide  
+      [&_label]:font-light 
       ">
         <div>
           <label for="birthday">DAY</label>
@@ -101,12 +106,13 @@
     </form>
     
     <div class="
-      [&>*]:text-4xl  
+      pt-5 
+      text-[50px]  
       font-[800] italic
       [&_span]:text-Purple 
       [&_span]:tracking-widest
       text-OffBlack 
-
+      leading-tight
       ">
       <p><span id="years">--</span> years</p>
       <p><span id="months">--</span> months</p>
@@ -117,6 +123,9 @@
   <script>
     $("#form").submit(event => {
       event.preventDefault();
+      
+      if ($("#birthyear").val() == "" || $("#birthmonth").val() == "" || $("#birthday").val() == "") return;
+
       let today = new Date();
       
       let birthdate = new Date();
