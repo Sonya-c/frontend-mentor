@@ -38,8 +38,19 @@
         margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
     }
 
-    input[type=number] {
+    input[type=number] { 
         -moz-appearance:textfield; /* Firefox */
+    }
+    .invalid .field-group * {
+      color:#f87171 !important;
+    }
+
+    .invalid .field-group input {
+      border-color: #ef4444 !important;
+    }
+    .invalid .msg {
+      display: block !important;
+      visibility: visible !important;
     }
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -64,26 +75,29 @@
       [&_input:hover]:border-Purple
       [&_input:hover]:outline-none
       [&_input]:cursor-pointer
-      [&_input]:font-bold
+      [&_input]:font-bolder
 
       [&_label]:text-[10px] 
       [&_label]:text-SmokeyGrey 
       [&_label]:tracking-wide  
       [&_label]:font-light 
       ">
-        <div>
+        <div id="birthday-group" class="field-group">
           <label for="birthday">DAY</label>
           <input id="birthday" min="1" max="31" type="number" placeholder="DD" required>
+          <p class="pt-1 msg text-[10px] italic hidden"></p>
         </div>
         
-        <div>
+        <div id="birthmonth-group" class="field-group">
           <label for="birthmonth">MONTH</label>
           <input type="number" min="1" max="12" id="birthmonth" placeholder="MM" required>
+          <p class="pt-1 msg text-[10px] italic hidden"></p>
         </div>
 
-        <div>
+        <div id="birthyear-group" class="field-group">
           <label for="birthyear">YEAR</label>
           <input type="number" min="0" id="birthyear" placeholder="YYYYY" required>
+          <p class="pt-1 msg text-[10px] italic hidden"></p>
         </div>
       </div>
       <div class="h-[30px] grid grid-cols-2 items-center ">
@@ -121,18 +135,66 @@
   </main>
 
   <script>
+    $("#form").change(event => {
+      $("#form").removeClass("invalid");
+      $(".msg").text("");
+    });
+
     $("#form").submit(event => {
       event.preventDefault();
       
-      if ($("#birthyear").val() == "" || $("#birthmonth").val() == "" || $("#birthday").val() == "") return;
-
       let today = new Date();
+
+      if ($("#birthday").val() == "" ||
+          $("#birthday").val() > 31 ||
+          $("#birthmonth").val() == "" ||
+          $("#birthmonth").val() > 12 ||
+          $("#birthyear").val() == "" ||
+          $("#birthyear").val() > (today.getFullYear())) {
+        
+        if ($("#birthday").val() == "") {
+          $("#birthday-group .msg").text("This field is required");
+        }
+        if ($("#birthday").val() > 31) {
+          $("#birthday-group .msg").text("Must be a valid day");
+        }
+        if ($("#birthmonth").val() == "") {
+          $("#birthmonth-group .msg").text("This field is required");
+        }
+        if ($("#birthmonth").val() > 12) {
+          $("#birthmonth-group .msg").text("Must be a valid month");
+        }
+        if ($("#birthyear").val() == "") {
+          $("#birthyear-group .msg").text("This field is required");
+        }
+        if ($("#birthyear").val()  > (today.getFullYear())) {
+          $("#birthyear-group .msg").text("Must be in the past");
+        }
+
+        console.log("hello bitch");
+        $("#form").addClass("invalid");
+        return;
+      };
       
-      let birthdate = new Date();
-      birthdate.setFullYear(
-        $("#birthyear").val(),
-        $("#birthmonth").val() - 1,
+      var months_len = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+      if($("#birthyear").val() % 400 == 0 || 
+        ($("#birthyear").val() % 100 != 0 && $("#birthyear").val() % 4 == 0)) {
+        months_len[1] = 29;
+      }
+
+      if ($("#birthday").val() > months_len[$("#birthmonth").val() - 1]) {
+        $("#birthday-group .msg").text("Must be a valid date");
+        $("#form").addClass("invalid");
+        return;
+      }
+
+      let birthdate = new Date(
+        $("#birthyear").val() + "/" + 
+        ($("#birthmonth").val() - 1) + "/" + 
         $("#birthday").val());
+      
+      console.log(birthdate.toString());
 
       let diff = new Date(today - birthdate);
 
