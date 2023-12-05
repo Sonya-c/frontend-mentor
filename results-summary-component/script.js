@@ -29,7 +29,7 @@ tailwind.config = {
 const categoryResults = ({ category, score, icon, color }) => {
     return `<div class="category flex w-full justify-between p-3 rounded-lg bg-${color}/[.10]" id='category_${category} items-center '>
         <div class="flex gap-3 justify-center items-center ">
-            <img src='${icon}'>
+            <img src='${icon} alt="${category}"'>
             <span class="text-${color} font-bold ">${category}</span>
         </div>
         <div class="self-center ">
