@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: 'Roboto';
+      src: url(assets/fonts/Roboto-Regular.ttf);
+      font-weight: normal;
+    }
+
+    @font-face {
+      font-family: 'Roboto';
+      src: url(assets/fonts/Roboto-Bold.ttf);
+      font-weight: bold;
+    }
+  </style>
+  <script src="/script.js"></script>
+  <style type="text/tailwindcss">
+    @layer components {
+      .card {
+        @apply bg-White;
+        @apply rounded-2xl;
+        @apply shadow-2xl;
+        @apply h-fit;
+      }
+
+      @media (min-width: 375px) {
+        .card {
+          @apply p-5;
+        }
+      }
+
+      li {
+        background: url("assets/images/icon-list.svg") no-repeat; 
+        @apply pl-5;
+        @apply pb-3; 
+      }
+   }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="h-screen bg-DarkSlateGrey flex justify-center md:items-center text-[16px] text-sm ">
+
+    <div id="signup" class="card grid md:grid-cols-2 text-DarkSlateGrey ">
+
+      <div class="order-last md:order-first p-5 grid gap-3 ">
+        <h1 class="text-3xl font-bold ">Stay updated!</h1>
+
+        <p>Sign up for our newsletter and we’ll send you a coupon for 10% off!</p>
+
+        <ul class="">
+          <li>
+            Product discovery and building what matters
+          </li>
+          <li>
+            <div>
+              Measuring to ensure updates are a success
+            </div>
+          </li>
+          <li>
+            <div>And much more!</div>
+          </li>
+        </ul>
+
+        <form id="form" class="grid gap-1 mt-3 ">
+          <label for="email" class="inline-block font-bold ">Email address</label>
+          <input type="email" id="email" name="email" placeholder="email@company.com"
+            class="pt-3 pb-3 pl-5 pr-5 border rounded-lg " />
+          <button type="submit"
+            class="w-full font-bold bg-DarkSlateGrey text-White rounded-lg p-3 text-base mt-3 ">Subscribe
+            to
+            monthly
+            newsletter</button>
+        </form>
+      </div>
+
+      <div
+        class="min-h-[300px] w-full order-first md:order-last bg-illustrationMobile md:bg-illustrationDesktop rounded-b-lg md:rounded-lg bg-no-repeat bg-cover ">
+      </div>
+    </div>
+
+    <div class="hidden card " id="success-message">
+      <img src="assets/images/icon-success.svg" alt="" srcset="">
+      <h1>Thanks for subscribing!</h1>
+
+      <p>A confirmation email has been sent to <strong id="email-success-message"></strong>.
+        Please open it and click the button inside to confirm your subscription.</p>
+
+      <button id="dimdiss-btn">Dismiss message</button>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
